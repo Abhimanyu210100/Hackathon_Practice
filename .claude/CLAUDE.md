@@ -1,6 +1,39 @@
 # CLAUDE.md
 
-Behavioral guidelines to reduce common LLM coding mistakes. Merge with project-specific instructions as needed.
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
+## Project: Sales AI Assistant
+
+Hackathon practice repo. Currently contains a B2B sales AI application that generates personalized outreach and follow-up recommendations for salespeople using the Anthropic Claude API.
+
+### Stack
+
+- **Language**: Python 3.10+
+- **Frontend**: Streamlit
+- **AI**: Anthropic Claude API (`claude-opus-4-8`) with prompt caching and streaming
+- **Data**: Synthetic in-memory dataset — no database
+
+### Commands
+
+```bash
+pip install -r requirements.txt
+ANTHROPIC_API_KEY=<key> streamlit run app.py
+```
+
+### Architecture
+
+```
+app.py                   # Entry point — calls render_app()
+frontend/dashboard.py    # Full UI: sidebar, client detail panel, recommendation section
+backend/data.py          # Client dataclass + 6 synthetic B2B clients
+core/recommendations.py  # Claude API: system prompt, context formatter, streaming generator
+```
+
+**Data flow:** `backend/data.py` → `core/recommendations.py` (streams Claude response chunks) → `frontend/dashboard.py` (`st.write_stream()` renders in real time). Session state caches `selected_client_id` and `recommendation` to avoid redundant API calls. System prompt uses `cache_control: ephemeral` for prompt caching.
+
+---
+
+## Coding Guidelines
 
 **Tradeoff:** These guidelines bias toward caution over speed. For trivial tasks, use judgment.
 
