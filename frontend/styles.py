@@ -3,11 +3,14 @@ STAGE_META = {
     "Qualification": {"icon": "◐", "bg": "#EDE9FE", "text": "#6D28D9"},
     "Proposal":      {"icon": "◑", "bg": "#FEF3C7", "text": "#B45309"},
     "Negotiation":   {"icon": "◕", "bg": "#FFEDD5", "text": "#C2410C"},
-    "Closed Won":    {"icon": "●", "bg": "#D1FAE5", "text": "#065F46"},
     "At Risk":       {"icon": "!", "bg": "#FEE2E2", "text": "#B91C1C"},
+    "Closed Won":    {"icon": "✓", "bg": "#D1FAE5", "text": "#065F46"},
+    "Closed Lost":   {"icon": "✗", "bg": "#F1F5F9", "text": "#64748B"},
 }
 
-STAGE_ORDER = ["Prospecting", "Qualification", "Proposal", "Negotiation", "At Risk", "Closed Won"]
+ACTIVE_STAGES   = ["Prospecting", "Qualification", "Proposal", "Negotiation", "At Risk"]
+ARCHIVED_STAGES = ["Closed Won", "Closed Lost"]
+STAGE_ORDER     = ACTIVE_STAGES + ARCHIVED_STAGES
 
 CSS = """
 <style>

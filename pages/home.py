@@ -3,7 +3,7 @@ from datetime import date
 import streamlit as st
 
 from backend.data import get_all_clients
-from frontend.styles import CSS, STAGE_META, STAGE_ORDER, badge, metric_tile
+from frontend.styles import ACTIVE_STAGES, CSS, STAGE_META, STAGE_ORDER, badge, metric_tile
 
 st.markdown(CSS, unsafe_allow_html=True)
 
@@ -22,7 +22,7 @@ st.markdown(
 
 # ── Compute stats ─────────────────────────────────────────────────────────────
 clients = get_all_clients()
-active = [c for c in clients if c.deal_stage != "Closed Won"]
+active = [c for c in clients if c.deal_stage in ACTIVE_STAGES]
 at_risk = [c for c in clients if c.deal_stage == "At Risk"]
 pipeline_value = sum(c.deal_value for c in active)
 overdue = [c for c in active if c.last_contact_days > 7]

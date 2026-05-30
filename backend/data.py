@@ -3,6 +3,13 @@ from typing import List, Optional
 
 
 @dataclass
+class Interaction:
+    date: str   # ISO format: "2026-05-30"
+    type: str   # "Email" | "Call" | "LinkedIn" | "Demo" | "Meeting" | "Contract" | "Internal" | "Webinar"
+    summary: str
+
+
+@dataclass
 class Client:
     id: str
     name: str
@@ -16,6 +23,7 @@ class Client:
     pain_points: List[str]
     recent_activity: str
     notes: str
+    interaction_history: List[Interaction]
 
 
 CLIENTS: List[Client] = [
@@ -44,6 +52,13 @@ CLIENTS: List[Client] = [
             "transformation. Went cold after initial outreach. Generic product messaging "
             "isn't landing; need a different angle."
         ),
+        interaction_history=[
+            Interaction("2026-05-28", "LinkedIn", "Liked our post on Industry 4.0 ROI case studies — no direct message."),
+            Interaction("2026-05-09", "Email", "Third outreach email sent (product-focused). Opened but no reply."),
+            Interaction("2026-05-02", "Email", "Second outreach email sent. Opened but no reply."),
+            Interaction("2026-04-25", "Email", "Initial cold outreach sent referencing ERP modernization trends. Opened but no reply."),
+            Interaction("2026-04-18", "Internal", "Added to pipeline as strong ICP fit. Identified via LinkedIn job post about digital transformation lead hire."),
+        ],
     ),
     Client(
         id="c002",
@@ -69,6 +84,11 @@ CLIENTS: List[Client] = [
             "touch. Insurance vertical is a new focus for us this quarter; good logo if "
             "we can land it."
         ),
+        interaction_history=[
+            Interaction("2026-05-23", "Webinar", "Attended workflow automation webinar. Stayed for full Q&A but did not complete post-event survey."),
+            Interaction("2026-05-23", "Internal", "Added to pipeline as warm webinar lead. VP-level role at insurance group is strong ICP fit."),
+            Interaction("2026-05-16", "Email", "Webinar invitation sent via marketing sequence."),
+        ],
     ),
     Client(
         id="c003",
@@ -94,6 +114,11 @@ CLIENTS: List[Client] = [
             "product person, not procurement; speak his language around user outcomes "
             "and velocity, not cost savings."
         ),
+        interaction_history=[
+            Interaction("2026-05-19", "Email", "Follow-up email with product one-pager sent after LinkedIn reply. Not opened after 11 days."),
+            Interaction("2026-05-16", "LinkedIn", "Tom replied to cold outreach: 'interesting — send me more info.'"),
+            Interaction("2026-05-10", "LinkedIn", "Cold outreach message sent, focused on engineering velocity and LMS integration pain points."),
+        ],
     ),
 
     # ── Qualification ────────────────────────────────────────────────────────
@@ -121,6 +146,12 @@ CLIENTS: List[Client] = [
             "reporting pain is acute — her team just missed a board deadline. "
             "Decision likely within 6 weeks."
         ),
+        interaction_history=[
+            Interaction("2026-05-28", "Email", "Priya replied within 2 hours requesting a 30-minute discovery call next Tuesday. Flagged she's evaluating 3 vendors."),
+            Interaction("2026-05-28", "Email", "Intro email sent following LinkedIn connection."),
+            Interaction("2026-05-25", "LinkedIn", "Connected after Priya engaged with our automated reporting content."),
+            Interaction("2026-05-20", "Internal", "Identified as warm inbound lead via LinkedIn. Added to pipeline."),
+        ],
     ),
     Client(
         id="c005",
@@ -146,6 +177,12 @@ CLIENTS: List[Client] = [
             "end-user — getting her involved is key. Rafael flagged that they're mid-way "
             "through a GA4 migration which could be a natural integration hook."
         ),
+        interaction_history=[
+            Interaction("2026-05-26", "Call", "45-minute discovery call. Strong engagement; asked about attribution modeling and GA4 migration hooks. Wants Head of Ad Ops involved before next step."),
+            Interaction("2026-05-22", "Email", "Pre-call agenda sent along with a campaign attribution benchmark report."),
+            Interaction("2026-05-18", "Email", "Follow-up proposing a discovery call to discuss fragmented reporting challenges."),
+            Interaction("2026-05-15", "LinkedIn", "Cold outreach message focused on ad ops efficiency and cross-platform attribution pain."),
+        ],
     ),
     Client(
         id="c006",
@@ -171,6 +208,13 @@ CLIENTS: List[Client] = [
             "but final sign-off requires the CFO. Compliance angle is the primary hook — "
             "their last FDA submission was delayed 8 weeks due to documentation issues."
         ),
+        interaction_history=[
+            Interaction("2026-05-21", "Demo", "Product demo attended. Nadia took notes throughout. Specific questions on 21 CFR Part 11 compliance and e-signature workflows."),
+            Interaction("2026-05-14", "Email", "Demo invite sent with compliance-focused agenda and FDA documentation case study."),
+            Interaction("2026-05-07", "Call", "30-minute intro call. Confirmed regulatory compliance is top priority. FDA submission delayed 8 weeks cited unprompted."),
+            Interaction("2026-04-30", "Email", "Initial outreach highlighting audit-ready data lineage and FDA documentation capabilities."),
+            Interaction("2026-04-22", "LinkedIn", "Connected after Nadia posted about challenges in regulatory submission prep."),
+        ],
     ),
 
     # ── Proposal ─────────────────────────────────────────────────────────────
@@ -198,6 +242,14 @@ CLIENTS: List[Client] = [
             "speak. Budget approved for Q2. Her team of 12 engineers is the main "
             "end-user group. CTO involvement is new and could accelerate or stall."
         ),
+        interaction_history=[
+            Interaction("2026-05-25", "Internal", "Email tracking: Sarah forwarded proposal to CTO internally."),
+            Interaction("2026-05-23", "Demo", "Product demo. Detailed questions on API rate limits, multi-region deployment, and CI/CD integration. High technical engagement."),
+            Interaction("2026-05-16", "Email", "Proposal sent following qualification call."),
+            Interaction("2026-05-09", "Call", "60-minute qualification call. Q2 budget confirmed approved. 12-engineer team is core end-user group."),
+            Interaction("2026-05-02", "Email", "Initial outreach referencing infrastructure scaling challenges common in Series B SaaS companies."),
+            Interaction("2026-04-20", "LinkedIn", "Cold message sent. Sarah connected and mentioned she'd been looking at solutions for onboarding bottlenecks."),
+        ],
     ),
     Client(
         id="c008",
@@ -224,6 +276,13 @@ CLIENTS: List[Client] = [
             "evaluation. White-labeling requirement is a differentiator we can offer — "
             "confirm with product before next call. High-value, fast-moving deal."
         ),
+        interaction_history=[
+            Interaction("2026-05-27", "Email", "Derek replied to proposal with 3 clarifying questions on data connectors and white-labeling for portfolio dashboards. Proposal opened 4x over 2 days."),
+            Interaction("2026-05-24", "Email", "Proposal sent following executive walkthrough."),
+            Interaction("2026-05-20", "Meeting", "Executive walkthrough with Derek and two portfolio operations leads. Strong engagement on KPI consolidation use case."),
+            Interaction("2026-05-13", "Call", "Discovery call. KPI reporting consolidation and investment committee deck automation identified as top priorities."),
+            Interaction("2026-05-06", "Email", "Intro email sent via referral from a portfolio company CEO."),
+        ],
     ),
     Client(
         id="c009",
@@ -249,6 +308,13 @@ CLIENTS: List[Client] = [
             "that failed on interoperability. That failure is our biggest selling point. "
             "Follow up Monday afternoon when she's back."
         ),
+        interaction_history=[
+            Interaction("2026-05-22", "Email", "Proposal submitted covering Epic interoperability, CMS quality reporting automation, and clinician documentation reduction."),
+            Interaction("2026-05-19", "Call", "Pre-proposal scoping call. Confirmed priorities and implementation timeline requirements."),
+            Interaction("2026-05-12", "Demo", "Technical demo focused on Epic EHR interoperability. Fatima asked specifically about the failure modes of the competing tool's integration."),
+            Interaction("2026-05-05", "Call", "45-minute discovery call. Clinician documentation burden (3 hrs/shift) flagged as most acute pain. Revealed failed 3-month pilot with competitor."),
+            Interaction("2026-04-28", "Email", "Intro email following a conference introduction via a mutual contact."),
+        ],
     ),
 
     # ── Negotiation ──────────────────────────────────────────────────────────
@@ -277,6 +343,14 @@ CLIENTS: List[Client] = [
             "HealthBridge is also in evaluation — need to re-engage before they "
             "make a decision without us."
         ),
+        interaction_history=[
+            Interaction("2026-05-18", "Email", "Legal team sent redlines: pushback on data residency clause and BAA terms. Marcus forwarded to legal and has been unresponsive since."),
+            Interaction("2026-05-06", "Call", "Contract review call. Marcus confident deal would close by end of Q1; flagged legal as final hurdle."),
+            Interaction("2026-04-29", "Email", "MSA draft sent for legal review."),
+            Interaction("2026-04-22", "Meeting", "Executive alignment meeting with Marcus and their CISO. HIPAA compliance architecture walkthrough completed."),
+            Interaction("2026-04-15", "Call", "Negotiation call. Agreed on commercial terms and SLA structure. Moved to legal review."),
+            Interaction("2026-03-20", "Demo", "Technical deep-dive on HIPAA compliance controls and EHR integration architecture. Marcus's engineering lead attended."),
+        ],
     ),
     Client(
         id="c011",
@@ -304,6 +378,13 @@ CLIENTS: List[Client] = [
             "Professional Services on feasibility. Deal is winnable but she's also "
             "talking to FreightForce."
         ),
+        interaction_history=[
+            Interaction("2026-05-24", "Email", "Counter-proposal received: 15% discount, net-60 payment terms, and dedicated implementation manager added to scope."),
+            Interaction("2026-05-17", "Call", "Pricing discussion. Initial proposal presented with standard implementation package. Lin indicated she'd consult her CFO."),
+            Interaction("2026-05-10", "Meeting", "On-site business case review with Lin and CFO. ROI model walkthrough; billing dispute automation resonated strongly."),
+            Interaction("2026-05-03", "Demo", "Operational workflow demo focused on port dwell time reduction and automated freight invoicing."),
+            Interaction("2026-04-26", "Call", "Discovery call. Billing disputes and outdated customer visibility portal flagged as highest urgency — triggering customer churn."),
+        ],
     ),
     Client(
         id="c012",
@@ -329,6 +410,14 @@ CLIENTS: List[Client] = [
             "Legal redlines are standard; should close within a week if we respond "
             "quickly. He's already told his team they're moving forward."
         ),
+        interaction_history=[
+            Interaction("2026-05-29", "Email", "Legal redlines received: minor changes to liability cap and IP ownership clauses."),
+            Interaction("2026-05-28", "Call", "Verbal agreement reached on scope and pricing. Carlos confirmed team is ready to move forward."),
+            Interaction("2026-05-21", "Email", "Revised proposal sent addressing resource utilization tracking across 3 offices."),
+            Interaction("2026-05-14", "Meeting", "Proposal walkthrough with Carlos and two senior practice leads. Strong alignment on project profitability use case."),
+            Interaction("2026-05-07", "Call", "30-minute discovery call. Real-time project profitability visibility flagged as urgent — missing cost overruns until invoicing."),
+            Interaction("2026-04-30", "LinkedIn", "Inbound: Carlos reached out after seeing a professional services firm case study we published."),
+        ],
     ),
 
     # ── At Risk ──────────────────────────────────────────────────────────────
@@ -358,6 +447,14 @@ CLIENTS: List[Client] = [
             "champion. Need to re-establish executive alignment quickly or risk losing "
             "to inertia."
         ),
+        interaction_history=[
+            Interaction("2026-05-12", "Email", "Missed scheduled call. Follow-up sent to reschedule. No response."),
+            Interaction("2026-05-05", "Call", "Scheduled call — Olivia was a no-show. Voicemail left offering flexible reschedule options."),
+            Interaction("2026-04-28", "Email", "Intro email sent to Olivia as new CDO. Previous champion (former CDO) had departed. Proposal re-submitted with executive summary."),
+            Interaction("2026-04-14", "Internal", "Learned from CloudFirst contact that executive sponsor changed — new CDO Olivia Torres hired. Deal paused pending re-engagement."),
+            Interaction("2026-04-07", "Meeting", "Proposal presentation with original CDO sponsor. Strong positive signal; verbal commitment to move forward after legal review."),
+            Interaction("2026-03-24", "Call", "Discovery call. Inventory forecasting accuracy (below 70%) flagged as top priority. Budget and timeline confirmed."),
+        ],
     ),
     Client(
         id="c014",
@@ -384,6 +481,14 @@ CLIENTS: List[Client] = [
             "Greg is not the economic buyer — the COO controls discretionary spend. "
             "May need to go above Greg to keep this alive."
         ),
+        interaction_history=[
+            Interaction("2026-05-05", "Email", "Security questionnaire sent at Greg's request. No response since — gone dark."),
+            Interaction("2026-05-01", "Call", "Follow-up call on proposal. Greg confirmed he'd review the security questionnaire that week. Last verbal contact."),
+            Interaction("2026-04-24", "Email", "Proposal and security questionnaire sent."),
+            Interaction("2026-04-17", "Demo", "Product demo for Greg and two senior attorneys. Strong engagement on matter management and client portal replacement."),
+            Interaction("2026-04-10", "Call", "Discovery call. Matter management system EoL in 90 days confirmed as urgent driver. Greg noted COO controls budget."),
+            Interaction("2026-04-03", "Email", "Initial outreach about matter management modernization and attorney productivity."),
+        ],
     ),
 
     # ── Closed Won ───────────────────────────────────────────────────────────
@@ -411,6 +516,15 @@ CLIENTS: List[Client] = [
             "interest in the fleet management add-on module for Q3. Strong expansion "
             "opportunity — intro him to the Customer Success team now."
         ),
+        interaction_history=[
+            Interaction("2026-04-30", "Internal", "Onboarding kickoff completed. CSM assigned. Implementation on track for week 3 milestones."),
+            Interaction("2026-04-01", "Contract", "Contract signed ($98K). SOW executed."),
+            Interaction("2026-03-25", "Email", "Final commercial terms agreed. MSA countersigned."),
+            Interaction("2026-03-18", "Call", "Procurement and legal review call. Minor redlines on liability cap resolved."),
+            Interaction("2026-03-11", "Meeting", "Executive sponsor presentation. Board sign-off received. David mentioned fleet management add-on interest for Q3."),
+            Interaction("2026-02-25", "Demo", "Technical POC review. David confirmed 95% feature coverage for tracking and dispatch use cases."),
+            Interaction("2026-02-11", "Call", "Discovery call. Real-time tracking gaps causing customer escalations flagged as top priority."),
+        ],
     ),
     Client(
         id="c016",
@@ -437,6 +551,15 @@ CLIENTS: List[Client] = [
             "change management ask is a real risk — loop in the Customer Success "
             "Director proactively. Expansion potential to their EU operations in H2."
         ),
+        interaction_history=[
+            Interaction("2026-05-16", "Internal", "Week 2 onboarding. 3 resistant regional managers flagged. Yemi requested change management session before full rollout."),
+            Interaction("2026-05-09", "Internal", "Onboarding kickoff completed. 200-rep field team rollout plan confirmed. Strong start."),
+            Interaction("2026-04-25", "Contract", "Contract signed ($320K — largest deal this quarter). Multi-year agreement executed."),
+            Interaction("2026-04-18", "Call", "Final negotiation call. Multi-year pricing structure agreed."),
+            Interaction("2026-04-11", "Meeting", "Stakeholder alignment session with Yemi, CFO, and 3 regional VPs. All signed off on rollout plan."),
+            Interaction("2026-03-28", "Demo", "Live CRM adoption analytics demo. Forecasting accuracy improvement case study resonated with Yemi and CFO."),
+            Interaction("2026-03-14", "Call", "Discovery call. CRM adoption at 55%, forecasting off 18% YTD causing downstream supply chain issues."),
+        ],
     ),
     Client(
         id="c017",
@@ -462,6 +585,112 @@ CLIENTS: List[Client] = [
             "confirm adoption health, and get a success story or case study if "
             "they're happy. Also a natural candidate for the compliance module upsell."
         ),
+        interaction_history=[
+            Interaction("2026-04-19", "Internal", "Implementation completed. Go-live confirmed. No support tickets raised."),
+            Interaction("2026-04-05", "Internal", "Final UAT passed. Field inspector training sessions completed across 3 sites."),
+            Interaction("2026-03-22", "Internal", "Implementation phase 2: regulatory compliance reporting module deployed."),
+            Interaction("2026-03-08", "Internal", "Implementation kickoff. Asset data migration from spreadsheets started."),
+            Interaction("2026-02-22", "Contract", "Contract signed ($145K). Implementation timeline agreed: 6 weeks."),
+            Interaction("2026-02-08", "Call", "Final commercial review call. Agreed on implementation timeline and success metrics."),
+        ],
+    ),
+
+    # ── Closed Lost ──────────────────────────────────────────────────────────
+    Client(
+        id="c018",
+        name="Brandon Kirk",
+        company="Orion Retail Group",
+        industry="Retail / E-commerce",
+        role="Director of IT",
+        email="bkirk@orionretail.com",
+        deal_stage="Closed Lost",
+        deal_value=88000,
+        last_contact_days=62,
+        pain_points=[
+            "Inventory sync lag between warehouses and e-commerce storefront",
+            "Manual order reconciliation consuming 3 FTEs",
+            "No unified reporting across 12 retail locations",
+        ],
+        recent_activity=(
+            "Informed us they selected a competitor (RetailEdge) 62 days ago. "
+            "Decision was primarily driven by RetailEdge's existing Shopify integration."
+        ),
+        notes=(
+            "Lost on integration depth, not on price or relationship. We lacked a "
+            "native Shopify connector at the time of evaluation. Worth re-engaging "
+            "once our Shopify integration ships in Q3."
+        ),
+        interaction_history=[
+            Interaction("2026-03-29", "Email", "Brandon confirmed selection of RetailEdge. Shopify integration cited as primary deciding factor."),
+            Interaction("2026-03-15", "Call", "Final evaluation check-in. No commitment; 'still reviewing with the team.'"),
+            Interaction("2026-03-01", "Email", "Proposal sent with Shopify integration roadmap outlined (Q3 delivery)."),
+            Interaction("2026-02-15", "Demo", "Inventory sync capabilities demo. Shopify connector gap surfaced — noted as potential blocker."),
+            Interaction("2026-02-01", "Call", "Discovery call. 12 retail locations with e-commerce storefront; inventory sync lag is highest urgency pain."),
+        ],
+    ),
+    Client(
+        id="c019",
+        name="Helen Marsh",
+        company="Crestwood Legal Partners",
+        industry="Legal Services",
+        role="COO",
+        email="hmarsh@crestwoodlegal.com",
+        deal_stage="Closed Lost",
+        deal_value=52000,
+        last_contact_days=90,
+        pain_points=[
+            "Billing disputes from manual time-entry errors",
+            "Matter lifecycle visibility gaps for partners",
+            "Client portal outdated and causing support overhead",
+        ],
+        recent_activity=(
+            "Deal stalled for 3 months and was formally closed out. Helen's firm "
+            "decided to delay all new software purchases until next fiscal year."
+        ),
+        notes=(
+            "Lost to budget freeze, not to a competitor. Helen was personally "
+            "enthusiastic about the product. Put her on a re-engagement sequence "
+            "starting next January when their new fiscal year opens."
+        ),
+        interaction_history=[
+            Interaction("2026-03-01", "Email", "Helen confirmed all new software purchases delayed until next fiscal year. Deal formally closed out."),
+            Interaction("2026-02-15", "Call", "Follow-up call. Helen still positive on the product but flagged internal budget constraints. No timeline given."),
+            Interaction("2026-02-01", "Email", "Revised proposal sent with phased implementation option to reduce upfront cost."),
+            Interaction("2026-01-18", "Demo", "Full product walkthrough. Helen very engaged; billing dispute resolution module resonated strongly."),
+            Interaction("2026-01-04", "Call", "Discovery call. Manual time-entry billing disputes causing partner frustration flagged as top pain."),
+        ],
+    ),
+    Client(
+        id="c020",
+        name="Victor Osei",
+        company="Madera Construction Group",
+        industry="Construction",
+        role="VP of Operations",
+        email="vosei@maderaconstruction.com",
+        deal_stage="Closed Lost",
+        deal_value=115000,
+        last_contact_days=45,
+        pain_points=[
+            "Project cost overruns invisible until month-end reporting",
+            "Subcontractor coordination managed via group texts and emails",
+            "Safety compliance documentation gaps creating liability exposure",
+        ],
+        recent_activity=(
+            "Went with an industry-specific construction ERP (BuildPro) that had "
+            "pre-built subcontractor management modules we could not match."
+        ),
+        notes=(
+            "Lost on vertical depth — BuildPro had construction-specific workflows "
+            "out of the box. Victor liked us but couldn't justify the customisation "
+            "cost. Good reference contact for the construction vertical in future."
+        ),
+        interaction_history=[
+            Interaction("2026-04-15", "Email", "Victor confirmed selection of BuildPro ERP. Pre-built subcontractor management cited as key differentiator."),
+            Interaction("2026-04-01", "Call", "Final evaluation call. Victor noted BuildPro's construction-specific workflows as decisive advantage over customisation cost."),
+            Interaction("2026-03-18", "Meeting", "On-site demo and executive walkthrough. Strong rapport but subcontractor coordination gap acknowledged."),
+            Interaction("2026-03-04", "Email", "Proposal sent with customisation scope for construction-specific workflows."),
+            Interaction("2026-02-18", "Call", "Discovery call. Subcontractor coordination (group texts) and safety compliance documentation gaps flagged as top needs."),
+        ],
     ),
 ]
 
